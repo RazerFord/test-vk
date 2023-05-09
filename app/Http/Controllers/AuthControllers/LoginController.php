@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\AuthControllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\Auth\LoginFormRequest;
 
 class LoginController extends BaseAuthController
 {
@@ -11,8 +11,9 @@ class LoginController extends BaseAuthController
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function __invoke(Request $reqest)
+    public function __invoke(LoginFormRequest $reqest)
     {
+        dd($reqest->validated());
         $credentials = request(['email', 'password']);
 
         if (!$token = auth()->attempt($credentials)) {
