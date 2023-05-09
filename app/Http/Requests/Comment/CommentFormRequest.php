@@ -26,6 +26,7 @@ class CommentFormRequest extends BaseRequest
         return [
             'text' => 'required|string',
             'parent_id' => 'filled|integer|exists:comments,id',
+            'user_id' => 'filled|integer|exists:users,id',
         ];
     }
 

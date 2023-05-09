@@ -25,6 +25,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('logout', 'App\Http\Controllers\AuthControllers\LogoutController');
 
     Route::post('comment', 'App\Http\Controllers\CommentControllers\StoreController');
+    Route::put('comment/{comment}', 'App\Http\Controllers\CommentControllers\UpdateController');
 });
 
 Route::get('unauthorized', 'App\Http\Controllers\AuthControllers\UnauthorizedController')->name('unauthorized');

@@ -6,14 +6,14 @@ use App\Http\Requests\Comment\CommentFormRequest;
 use App\Models\Comment;
 use Illuminate\Http\JsonResponse;
 
-class StoreController extends BaseCommentController
+class UpdateController extends BaseCommentController
 {
     /**
-     * Store new commen.
+     * Update comment.
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function __invoke(CommentFormRequest $request): JsonResponse
+    public function __invoke(CommentFormRequest $request, Comment $comment): JsonResponse
     {
         $data = $request->validated();
 
@@ -21,8 +21,8 @@ class StoreController extends BaseCommentController
             $data += ['user_id' => auth()->user()->id];
         }
 
-        $comment = Comment::create($data);
+        $comment->update($data);
 
-        return $this->successResponse('comment created', ['id' => $comment->id], JsonResponse::HTTP_OK);
+        return $this->successResponse('comment created', $comment->toArray(), JsonResponse::HTTP_OK);
     }
 }
