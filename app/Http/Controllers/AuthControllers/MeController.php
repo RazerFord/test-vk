@@ -13,6 +13,10 @@ class MeController extends BaseAuthController
      */
     public function __invoke(): JsonResponse
     {
-        return $this->successResponse('info', auth()->user(), JsonResponse::HTTP_OK);
+        /**
+         * @var \App\Models\User
+         */
+        $user = auth()->user();
+        return $this->successResponse('info', $user->toArray(), JsonResponse::HTTP_OK);
     }
 }

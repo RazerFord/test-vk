@@ -24,7 +24,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('me', 'App\Http\Controllers\AuthControllers\MeController');
     Route::get('logout', 'App\Http\Controllers\AuthControllers\LogoutController');
 
-    // Route::post('comment', )
+    Route::post('comment', 'App\Http\Controllers\CommentControllers\StoreController');
 });
 
 Route::get('unauthorized', 'App\Http\Controllers\AuthControllers\UnauthorizedController')->name('unauthorized');

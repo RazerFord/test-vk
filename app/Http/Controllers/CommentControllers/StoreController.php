@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\CommentControllers;
 
+use App\Http\Requests\Comment\CommentFormRequest;
+use App\Models\Comment;
 use Illuminate\Http\JsonResponse;
 
 class StoreController extends BaseCommentController
@@ -11,8 +13,12 @@ class StoreController extends BaseCommentController
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function __invoke(): JsonResponse
+    public function __invoke(CommentFormRequest $request): JsonResponse
     {
-        return $this->successResponse('', [], JsonResponse::HTTP_OK);
+        $data = $request->validated() + ['user_id' => auth()->user()->id];
+
+        $comment = Comment::create($data);
+
+        return $this->successResponse('comment created', ['id' => $comment->id], JsonResponse::HTTP_OK);
     }
 }
