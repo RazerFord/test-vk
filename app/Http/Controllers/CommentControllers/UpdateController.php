@@ -23,6 +23,6 @@ class UpdateController extends BaseCommentController
 
         $comment->update($data);
 
-        return $this->successResponse('comment created', $comment->toArray(), JsonResponse::HTTP_OK);
+        return $this->successResponse('comment updated', $comment->toArray(), JsonResponse::HTTP_OK);
     }
 }

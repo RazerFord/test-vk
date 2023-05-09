@@ -26,6 +26,7 @@ Route::middleware('auth:api')->group(function () {
 
     Route::post('comment', 'App\Http\Controllers\CommentControllers\StoreController');
     Route::put('comment/{comment}', 'App\Http\Controllers\CommentControllers\UpdateController');
+    Route::delete('comment/{id}', 'App\Http\Controllers\CommentControllers\DeleteController');
 });
 
 Route::get('unauthorized', 'App\Http\Controllers\AuthControllers\UnauthorizedController')->name('unauthorized');
