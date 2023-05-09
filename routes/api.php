@@ -1,6 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\AuthControllers\LoginController;
+use App\Http\Controllers\AuthControllers\LogoutController;
+use App\Http\Controllers\AuthControllers\MeController;
+use App\Http\Controllers\BaseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('comment', function () {
-    dd(App\Models\Comment::all()->toArray());
+Route::get('login', 'App\Http\Controllers\AuthControllers\LoginController')->name('login');
+Route::middleware('auth:api')->group(function () {
+    Route::get('logout', 'App\Http\Controllers\AuthControllers\LogoutController');
+    Route::get('me', 'App\Http\Controllers\AuthControllers\MeController');
 });
