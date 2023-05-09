@@ -60,15 +60,8 @@ class UserTest extends TestCase
             'password' => 'pass'
         ]);
         $response->assertStatus(200);
-        $response = $this->postJson('/api/login', [
-            'email' => 'new@vk.ru',
-            'password' => 'pass'
-        ]);
-        $response->assertStatus(200);
-        $token = $response->getData()?->data?->access_token;
-        $response = $this->withHeaders([
-            'Authorization' => 'Bearer ' . $token,
-        ])->get('/api/me');
+        $headers = $this->getHeaders('new@vk.ru', 'pass');
+        $response = $this->withHeaders($headers)->get('/api/me');
         $response->assertStatus(200);
     }
 
@@ -77,23 +70,25 @@ class UserTest extends TestCase
      */
     public function test_log_out_user(): void
     {
+        $headers = $this->getHeaders('userfst@vk.ru', 'pass');
+        $response = $this->withHeaders($headers)->getJson('/api/logout');
+        $response->assertStatus(200);
+        $response = $this->withHeaders($headers)->getJson('/api/me');
+        $response->assertStatus(401);
+    }
+
+    private function getHeaders(string $email, string $pass): array
+    {
+        return ['Authorization' => 'Bearer ' . $this->getToken($email, $pass),];
+    }
+
+    private function getToken(string $email, string $pass): string | null
+    {
         $response = $this->postJson('/api/login', [
-            'email' => 'userfst@vk.ru',
-            'password' => 'pass'
+            'email' => $email,
+            'password' => $pass,
         ]);
         $response->assertStatus(200);
-        $token = $response->getData()?->data?->access_token;
-        $response = $this->withHeaders([
-            'Authorization' => 'Bearer ' . $token,
-        ])->getJson('/api/me');
-        $response->assertStatus(200);
-        $response = $this->withHeaders([
-            'Authorization' => 'Bearer ' . $token,
-        ])->getJson('/api/logout');
-        $response->assertStatus(200);
-        $response = $this->withHeaders([
-            'Authorization' => 'Bearer ' . $token,
-        ])->getJson('/api/me');
-        $response->assertStatus(401);
+        return $response->getData()?->data?->access_token;
     }
 }
