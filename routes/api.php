@@ -1,9 +1,5 @@
 <?php
 
-use App\Http\Controllers\AuthControllers\LoginController;
-use App\Http\Controllers\AuthControllers\LogoutController;
-use App\Http\Controllers\AuthControllers\MeController;
-use App\Http\Controllers\BaseController;
 use Illuminate\Support\Facades\Route;
 
 /*
