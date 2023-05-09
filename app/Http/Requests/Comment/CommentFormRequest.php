@@ -25,7 +25,19 @@ class CommentFormRequest extends BaseRequest
     {
         return [
             'text' => 'required|string',
-            'parent_id' => 'filled|integer|gt:0',
+            'parent_id' => 'filled|integer|exists:comments,id',
+        ];
+    }
+
+    /**
+     * Get the validation messages.
+     *
+     * @return array<string, string>
+     */
+    public function messages()
+    {
+        return [
+            'parent_id.exists' => 'comment id must exist',
         ];
     }
 }
