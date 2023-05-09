@@ -19,6 +19,6 @@ class RegisterController extends BaseAuthController
 
         $user = User::create($credentials);
 
-        return $this->successResponse('registered', $user->toArray(), 200);
+        return $this->successResponse('registered', $user->toArray(), JsonResponse::HTTP_OK);
     }
 }

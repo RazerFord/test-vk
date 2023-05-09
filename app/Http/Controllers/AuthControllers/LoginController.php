@@ -17,9 +17,9 @@ class LoginController extends BaseAuthController
         $credentials = $request->validated();
 
         if (!$token = auth()->attempt($credentials)) {
-            return $this->errorResponse('unauthorized', [], 401);
+            return $this->errorResponse('unauthorized', [], JsonResponse::HTTP_UNAUTHORIZED);
         }
 
-        return $this->successResponse('authorized', ['access_token' => $token], 200);
+        return $this->successResponse('authorized', ['access_token' => $token], JsonResponse::HTTP_OK);
     }
 }

@@ -15,6 +15,6 @@ class LogoutController extends BaseAuthController
     {
         auth()->logout();
 
-        return response()->json(['message' => 'Successfully logged out']);
+        return $this->successResponse('logged out', ['message' => 'Successfully logged out'], JsonResponse::HTTP_OK);
     }
 }

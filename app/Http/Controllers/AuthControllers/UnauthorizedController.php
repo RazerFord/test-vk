@@ -13,6 +13,6 @@ class UnauthorizedController extends BaseAuthController
      */
     public function __invoke(): JsonResponse
     {
-        return $this->errorResponse('unauthorized', [], 401);
+        return $this->errorResponse('unauthorized', [], JsonResponse::HTTP_UNAUTHORIZED);
     }
 }

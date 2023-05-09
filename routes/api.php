@@ -23,6 +23,8 @@ Route::post('register', 'App\Http\Controllers\AuthControllers\RegisterController
 Route::middleware('auth:api')->group(function () {
     Route::get('me', 'App\Http\Controllers\AuthControllers\MeController');
     Route::get('logout', 'App\Http\Controllers\AuthControllers\LogoutController');
+
+    // Route::post('comment', )
 });
 
 Route::get('unauthorized', 'App\Http\Controllers\AuthControllers\UnauthorizedController')->name('unauthorized');
