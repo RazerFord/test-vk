@@ -26,4 +26,16 @@ class Comment extends Model
         'parent_comment_id',
         'user_id',
     ];
+
+    public function ret(): array
+    {
+        $data = $this->only('text', 'user_id', 'parent_comment_id', 'created_at');
+
+        return [
+            'text' => $data['text'],
+            'user_id' => $data['user_id'],
+            'parent_comment_id' => $data['parent_comment_id'],
+            'date' => $data['created_at']->format('Y-m-d'),
+        ];
+    }
 }
