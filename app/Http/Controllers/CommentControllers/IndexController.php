@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\CommentControllers;
 
 use App\Models\Comment;
+use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
 class IndexController extends BaseCommentController
@@ -12,9 +13,14 @@ class IndexController extends BaseCommentController
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function __invoke(Comment $comment): JsonResponse
+    public function __invoke(Comment $comment, Request $request): JsonResponse
     {
-        $data = $comment->ret();
+        $tree = $request->get('tree', '0');
+        if ($tree === '1') {
+            $data = $comment->retTree();
+        } else {
+            $data = $comment->ret();
+        }
         return $this->successResponse('comment found', $data, JsonResponse::HTTP_OK);
     }
 }
