@@ -11,7 +11,7 @@ x-backend: &backend
   environment:
     APP_NAME: 'test-vk'
     APP_DEBUG: 'true'
-    L5_SWAGGER_CONST_HOST: 'http://0.0.0.0:8080/api/v1'
+    L5_SWAGGER_CONST_HOST: 'http://0.0.0.0:8080/docs/api/v1'
     APP_KEY: 'base64:d1k91AgNcf1g7t/SVxBwE3u4NFK/I3vMH8Gyzl2Rvrs='
     JWT_SECRET: 'YXvBW18QVJTIXho84WSseH12yQ32JdQYC5PmL8JzBuzcSz1YUnHfTUFG73ndNA1S'
     DB_CONNECTION: pgsql
