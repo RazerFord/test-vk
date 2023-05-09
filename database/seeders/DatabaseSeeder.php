@@ -13,10 +13,15 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         \App\Models\User::factory(10)->create();
+        $this->repeatFactory(10, function () {
+            \App\Models\Comment::factory(1)->create();
+        });
+    }
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+    public function repeatFactory(int $count, callable $func)
+    {
+        for ($i = 0; $i < $count; $i++) {
+            $func();
+        }
     }
 }
