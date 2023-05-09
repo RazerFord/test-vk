@@ -12,6 +12,7 @@ x-backend: &backend
     APP_NAME: 'test-vk'
     APP_DEBUG: 'true'
     APP_KEY: 'base64:d1k91AgNcf1g7t/SVxBwE3u4NFK/I3vMH8Gyzl2Rvrs='
+    JWT_SECRET: 'YXvBW18QVJTIXho84WSseH12yQ32JdQYC5PmL8JzBuzcSz1YUnHfTUFG73ndNA1S'
     DB_CONNECTION: pgsql
     DB_HOST: postgres
     DB_PORT: 5432
