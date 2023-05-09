@@ -17,8 +17,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('login', 'App\Http\Controllers\AuthControllers\LoginController')->name('login');
+Route::post('login', 'App\Http\Controllers\AuthControllers\LoginController');
+Route::post('register', 'App\Http\Controllers\AuthControllers\RegisterController');
+
 Route::middleware('auth:api')->group(function () {
-    Route::get('logout', 'App\Http\Controllers\AuthControllers\LogoutController');
     Route::get('me', 'App\Http\Controllers\AuthControllers\MeController');
+    Route::get('logout', 'App\Http\Controllers\AuthControllers\LogoutController');
 });
+
+Route::get('unauthorized', 'App\Http\Controllers\AuthControllers\UnauthorizedController')->name('unauthorized');

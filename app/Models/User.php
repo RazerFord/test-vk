@@ -61,4 +61,21 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    /**
+     * Return an array of attributes
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        $array = parent::toArray();
+        return [
+            'id' => $array['id'],
+            'name' => $array['name'],
+            'email' => $array['email'],
+            'created_at' => $array['created_at'],
+            'updated_at' => $array['updated_at'],
+        ];
+    }
 }

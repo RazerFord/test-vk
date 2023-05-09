@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AuthControllers;
 
 use App\Http\Requests\Auth\LoginFormRequest;
+use Illuminate\Http\JsonResponse;
 
 class LoginController extends BaseAuthController
 {
@@ -11,29 +12,14 @@ class LoginController extends BaseAuthController
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function __invoke(LoginFormRequest $reqest)
+    public function __invoke(LoginFormRequest $request): JsonResponse
     {
-        dd($reqest->validated());
-        $credentials = request(['email', 'password']);
+        $credentials = $request->validated();
 
         if (!$token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return $this->errorResponse('unauthorized', [], 401);
         }
 
-        return $this->respondWithToken($token);
-    }
-
-    /**
-     * Get the token array structure.
-     *
-     * @param  string $token
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    protected function respondWithToken($token)
-    {
-        return response()->json([
-            'access_token' => $token,
-        ]);
+        return $this->successResponse('authorized', ['access_token' => $token], 200);
     }
 }

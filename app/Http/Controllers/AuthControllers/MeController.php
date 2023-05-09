@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\AuthControllers;
 
+use Illuminate\Http\JsonResponse;
+
 class MeController extends BaseAuthController
 {
     /**
@@ -9,8 +11,8 @@ class MeController extends BaseAuthController
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function __invoke()
+    public function __invoke(): JsonResponse
     {
-        return response()->json(auth()->user());
+        return $this->successResponse('info', auth()->user(), 200);
     }
 }
