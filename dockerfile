@@ -9,8 +9,8 @@ RUN composer dump-autoload
 FROM php:8.1
 RUN echo "UTC" > /etc/timezone
 RUN apt-get update && \
-    apt-get install -y libpq-dev && \
-    docker-php-ext-install pdo pdo_pgsql pgsql
+    apt-get install -y libpq-dev libzip-dev zip && \
+    docker-php-ext-install pdo pdo_pgsql pgsql zip
 
 WORKDIR /app
 COPY --from=composer /app .
