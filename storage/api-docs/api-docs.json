@@ -61,7 +61,7 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthenticated",
+                        "description": "Unauthorized",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -115,7 +115,51 @@
                         }
                     },
                     "401": {
-                        "description": "Unauthenticated",
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LoginResourceFalse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/me": {
+            "get": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Me",
+                "description": "Get the authenticated User.",
+                "operationId": "me",
+                "parameters": [
+                    {
+                        "name": "Bearer Token",
+                        "in": "header",
+                        "description": "Authorization token",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Bearer 67pIVg4vAbmRZewXK4H0llU4XQtSy3VIxTpofgUOFfpcTfXfK1U0tSM3YNhytEw7BA7KzePrRJoQs3KlQSpzCer10lObTrep8wuZ"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MeResourceTrue"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -249,6 +293,38 @@
                 "type": "object",
                 "xml": {
                     "name": "LogoutResourceTrue"
+                }
+            },
+            "MeResourceTrue": {
+                "title": "MeResourceTrue",
+                "description": "Me resource",
+                "properties": {
+                    "success": {
+                        "title": "Success",
+                        "description": "Status answer",
+                        "type": "boolean",
+                        "default": "true"
+                    },
+                    "message": {
+                        "title": "Message",
+                        "description": "Response message",
+                        "type": "string",
+                        "default": "info"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "description": "Response data",
+                        "type": "object",
+                        "default": {
+                            "id": 11,
+                            "name": "test",
+                            "email": "test@vk.ru"
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "MeResourceTrue"
                 }
             }
         }

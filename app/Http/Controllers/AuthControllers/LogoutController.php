@@ -30,7 +30,7 @@ class LogoutController extends BaseAuthController
      *       ),
      *      @OA\Response(
      *          response=401,
-     *          description="Unauthenticated",
+     *          description="Unauthorized",
      *          @OA\JsonContent(ref="#/components/schemas/LoginResourceFalse")
      *      )
      *     )

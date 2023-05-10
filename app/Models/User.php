@@ -74,8 +74,6 @@ class User extends Authenticatable implements JWTSubject
             'id' => $array['id'],
             'name' => $array['name'],
             'email' => $array['email'],
-            'created_at' => $array['created_at'],
-            'updated_at' => $array['updated_at'],
         ];
     }
 }
