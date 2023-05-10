@@ -15,4 +15,5 @@ RUN apt-get update && \
 WORKDIR /app
 COPY --from=composer /app .
 CMD ./artisan migrate --force --seed \
-    && ./artisan serve --host=0.0.0.0 --port=8080
+    && ./artisan serve --host=0.0.0.0 --port=8080 \
+    && ./artisan serve l5-swagger:generate

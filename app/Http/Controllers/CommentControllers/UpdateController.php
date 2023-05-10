@@ -18,6 +18,16 @@ class UpdateController extends BaseCommentController
      *      description="Update comment.",
      *      security={{"Authorization":{}}},
      *      @OA\Parameter(
+     *          name="text",
+     *          description="text of comment",
+     *          required=true,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string",
+     *              example="long text ...",
+     *          )
+     *      ),
+     *      @OA\Parameter(
      *          name="comment_id",
      *          description="comment id",
      *          required=true,

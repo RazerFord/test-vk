@@ -299,6 +299,16 @@
                 "operationId": "commentUpdate",
                 "parameters": [
                     {
+                        "name": "text",
+                        "in": "query",
+                        "description": "text of comment",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "long text ..."
+                        }
+                    },
+                    {
                         "name": "comment_id",
                         "in": "path",
                         "description": "comment id",
