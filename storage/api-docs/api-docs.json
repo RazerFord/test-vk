@@ -82,6 +82,50 @@
                     }
                 }
             }
+        },
+        "/api/logout": {
+            "get": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Logout",
+                "description": "Log the user out (Invalidate the token).",
+                "operationId": "logout",
+                "parameters": [
+                    {
+                        "name": "Bearer Token",
+                        "in": "header",
+                        "description": "Authorization token",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Bearer 67pIVg4vAbmRZewXK4H0llU4XQtSy3VIxTpofgUOFfpcTfXfK1U0tSM3YNhytEw7BA7KzePrRJoQs3KlQSpzCer10lObTrep8wuZ"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LogoutResourceTrue"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LoginResourceFalse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -175,6 +219,36 @@
                 "type": "object",
                 "xml": {
                     "name": "LoginResourceTrue"
+                }
+            },
+            "LogoutResourceTrue": {
+                "title": "LogoutResourceTrue",
+                "description": "Logout resource",
+                "properties": {
+                    "success": {
+                        "title": "Success",
+                        "description": "Status answer",
+                        "type": "boolean",
+                        "default": "true"
+                    },
+                    "message": {
+                        "title": "Message",
+                        "description": "Response message",
+                        "type": "string",
+                        "default": "logged out"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "description": "Response data",
+                        "type": "object",
+                        "default": {
+                            "message": "Successfully logged out"
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "LogoutResourceTrue"
                 }
             }
         }

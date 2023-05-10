@@ -50,6 +50,9 @@ class LoginController extends BaseAuthController
      *          @OA\JsonContent(ref="#/components/schemas/LoginResourceErrorValidation")
      *      )
      *     )
+     *
+     *  @var LoginFormRequest $request
+     *  @return JsonResponse
      */
     public function __invoke(LoginFormRequest $request): JsonResponse
     {
