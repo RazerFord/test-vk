@@ -8,10 +8,53 @@ use Illuminate\Http\JsonResponse;
 
 class UpdateController extends BaseCommentController
 {
+
     /**
-     * Update comment.
+     * @OA\Put(
+     *      path="/api/comment/{comment_id}",
+     *      operationId="commentUpdate",
+     *      tags={"Projects"},
+     *      summary="Index",
+     *      description="Update comment.",
+     *      security={{"Authorization":{}}},
+     *      @OA\Parameter(
+     *          name="comment_id",
+     *          description="comment id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer",
+     *              example=1
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="user_id",
+     *          description="user id",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="integer",
+     *              example=1,
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Ok",
+     *          @OA\JsonContent(ref="#/components/schemas/IndexCommentResourceTrue")
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *          @OA\JsonContent(ref="#/components/schemas/LoginResourceFalse")
+     *      ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Unprocessable Content",
+     *          @OA\JsonContent(ref="#/components/schemas/StoreCommentResourceErrorValidation")
+     *      )
+     *     )
      *
-     * @return \Illuminate\Http\JsonResponse
+     *  @return \Illuminate\Http\JsonResponse
      */
     public function __invoke(CommentFormRequest $request, Comment $comment): JsonResponse
     {
@@ -23,6 +66,6 @@ class UpdateController extends BaseCommentController
 
         $comment->update($data);
 
-        return $this->successResponse('comment updated', $comment->toArray(), JsonResponse::HTTP_OK);
+        return $this->successResponse('comment updated', $comment->ret(), JsonResponse::HTTP_OK);
     }
 }
