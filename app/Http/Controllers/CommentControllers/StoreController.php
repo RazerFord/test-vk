@@ -15,16 +15,7 @@ class StoreController extends BaseCommentController
      *      tags={"Projects"},
      *      summary="Store",
      *      description="Store new comment.",
-     *      @OA\Parameter(
-     *          name="Authorization",
-     *          description="Authorization token",
-     *          required=true,
-     *          in="header",
-     *          @OA\Schema(
-     *              type="string",
-     *              example="Bearer 67pIVg4vAbmRZewXK4H0llU4XQtSy3VIxTpofgUOFfpcTfXfK1U0tSM3YNhytEw7BA7KzePrRJoQs3KlQSpzCer10lObTrep8wuZ"
-     *          )
-     *      ),
+     *      security={{"Authorization":{}}},
      *      @OA\Parameter(
      *          name="text",
      *          description="text of comment",

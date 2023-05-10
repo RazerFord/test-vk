@@ -91,18 +91,6 @@
                 "summary": "Logout",
                 "description": "Log the user out (Invalidate the token).",
                 "operationId": "logout",
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization token",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "Bearer 67pIVg4vAbmRZewXK4H0llU4XQtSy3VIxTpofgUOFfpcTfXfK1U0tSM3YNhytEw7BA7KzePrRJoQs3KlQSpzCer10lObTrep8wuZ"
-                        }
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "Ok",
@@ -124,7 +112,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ]
             }
         },
         "/api/me": {
@@ -135,18 +128,6 @@
                 "summary": "Me",
                 "description": "Get the authenticated User.",
                 "operationId": "me",
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization token",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "Bearer 67pIVg4vAbmRZewXK4H0llU4XQtSy3VIxTpofgUOFfpcTfXfK1U0tSM3YNhytEw7BA7KzePrRJoQs3KlQSpzCer10lObTrep8wuZ"
-                        }
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "Ok",
@@ -168,7 +149,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ]
             }
         },
         "/api/register": {
@@ -245,16 +231,6 @@
                 "operationId": "commentIndex",
                 "parameters": [
                     {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization token",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "Bearer 67pIVg4vAbmRZewXK4H0llU4XQtSy3VIxTpofgUOFfpcTfXfK1U0tSM3YNhytEw7BA7KzePrRJoQs3KlQSpzCer10lObTrep8wuZ"
-                        }
-                    },
-                    {
                         "name": "comment_id",
                         "in": "path",
                         "description": "comment id",
@@ -307,7 +283,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ]
             }
         },
         "/api/comment": {
@@ -319,16 +300,6 @@
                 "description": "Store new comment.",
                 "operationId": "commentStore",
                 "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization token",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "Bearer 67pIVg4vAbmRZewXK4H0llU4XQtSy3VIxTpofgUOFfpcTfXfK1U0tSM3YNhytEw7BA7KzePrRJoQs3KlQSpzCer10lObTrep8wuZ"
-                        }
-                    },
                     {
                         "name": "text",
                         "in": "query",
@@ -391,7 +362,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ]
             }
         }
     },
@@ -711,6 +687,14 @@
                 "xml": {
                     "name": "StoreCommentResourceTrue"
                 }
+            }
+        },
+        "securitySchemes": {
+            "sanctum": {
+                "type": "apiKey",
+                "description": "Bearer ",
+                "name": "Authorization",
+                "in": "header"
             }
         }
     },

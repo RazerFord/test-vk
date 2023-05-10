@@ -32,6 +32,15 @@ use Illuminate\Routing\Controller;
  *     name="Projects",
  *     description="API Endpoints of Projects"
  * )
+ *
+ * @OAs\SecurityScheme(
+ *    securityScheme="bearerAuth",
+ *    in="header",
+ *    name="Authorization",
+ *    type="http",
+ *    scheme="bearer",
+ *    bearerFormat="JWT",
+ * ),
  */
 class BaseController extends Controller
 {

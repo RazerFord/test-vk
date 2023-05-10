@@ -13,16 +13,7 @@ class LogoutController extends BaseAuthController
      *      tags={"Projects"},
      *      summary="Logout",
      *      description="Log the user out (Invalidate the token).",
-     *      @OA\Parameter(
-     *          name="Authorization",
-     *          description="Authorization token",
-     *          required=true,
-     *          in="header",
-     *          @OA\Schema(
-     *              type="string",
-     *              example="Bearer 67pIVg4vAbmRZewXK4H0llU4XQtSy3VIxTpofgUOFfpcTfXfK1U0tSM3YNhytEw7BA7KzePrRJoQs3KlQSpzCer10lObTrep8wuZ"
-     *          )
-     *      ),
+     *      security={{"Authorization":{}}},
      *      @OA\Response(
      *          response=200,
      *          description="Ok",
