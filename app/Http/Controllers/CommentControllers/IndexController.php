@@ -16,7 +16,7 @@ class IndexController extends BaseCommentController
      *      summary="Index",
      *      description="Get a comment.",
      *      @OA\Parameter(
-     *          name="Bearer Token",
+     *          name="Authorization",
      *          description="Authorization token",
      *          required=true,
      *          in="header",
@@ -37,8 +37,8 @@ class IndexController extends BaseCommentController
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Authorized",
-     *          @OA\JsonContent(ref="#/components/schemas/LoginResourceTrue")
+     *          description="Ok",
+     *          @OA\JsonContent(ref="#/components/schemas/IndexCommentResourceTrue")
      *       ),
      *      @OA\Response(
      *          response=401,
@@ -46,9 +46,9 @@ class IndexController extends BaseCommentController
      *          @OA\JsonContent(ref="#/components/schemas/LoginResourceFalse")
      *      ),
      *      @OA\Response(
-     *          response=422,
-     *          description="Unprocessable Content",
-     *          @OA\JsonContent(ref="#/components/schemas/LoginResourceErrorValidation")
+     *          response=404,
+     *          description="Not Found",
+     *          @OA\JsonContent(ref="#/components/schemas/NotFoundCommentResourceTrue")
      *      )
      *     )
      *

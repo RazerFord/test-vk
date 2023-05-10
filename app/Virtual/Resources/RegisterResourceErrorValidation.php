@@ -40,7 +40,7 @@ class RegisterResourceErrorValidation
      *     title="Data",
      *     description="Response data",
      *     type="object",
-     *     default={
+     *     example={
      *         "name": {
      *           "The name field is required."
      *         },

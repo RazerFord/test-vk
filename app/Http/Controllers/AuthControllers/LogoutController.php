@@ -14,7 +14,7 @@ class LogoutController extends BaseAuthController
      *      summary="Logout",
      *      description="Log the user out (Invalidate the token).",
      *      @OA\Parameter(
-     *          name="Bearer Token",
+     *          name="Authorization",
      *          description="Authorization token",
      *          required=true,
      *          in="header",

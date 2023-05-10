@@ -4,14 +4,14 @@ namespace App\Virtual\Resources;
 
 /**
  * @OA\Schema(
- *     title="LoginResourceFalse",
- *     description="Login resource",
+ *     title="NotFoundCommentResourceTrue",
+ *     description="Not found comment",
  *     @OA\Xml(
- *         name="LoginResourceFalse"
+ *         name="NotFoundCommentResourceTrue"
  *     )
  * )
  */
-class LoginResourceErrorValidation
+class NotFoundCommentResourceTrue
 {
     /**
      * @OA\Property(
@@ -29,7 +29,7 @@ class LoginResourceErrorValidation
      *     title="Message",
      *     description="Response message",
      *     type="string",
-     *     default="error validation"
+     *     default="not found"
      * )
      * @var string
      */
@@ -40,10 +40,7 @@ class LoginResourceErrorValidation
      *     title="Data",
      *     description="Response data",
      *     type="object",
-     *     default={
-     *        "email":{"The email field is required."},
-     *        "password":{"The password field is required."},
-     *     }
+     *     default=null
      * )
      * @var array
      */

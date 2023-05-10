@@ -14,7 +14,7 @@ class MeController extends BaseAuthController
      *      summary="Me",
      *      description="Get the authenticated User.",
      *      @OA\Parameter(
-     *          name="Bearer Token",
+     *          name="Authorization",
      *          description="Authorization token",
      *          required=true,
      *          in="header",

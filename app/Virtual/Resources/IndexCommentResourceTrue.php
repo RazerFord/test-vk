@@ -4,21 +4,21 @@ namespace App\Virtual\Resources;
 
 /**
  * @OA\Schema(
- *     title="LoginResourceFalse",
- *     description="Login resource",
+ *     title="IndexCommentResourceTrue",
+ *     description="Index comment",
  *     @OA\Xml(
- *         name="LoginResourceFalse"
+ *         name="IndexCommentResourceTrue"
  *     )
  * )
  */
-class LoginResourceErrorValidation
+class IndexCommentResourceTrue
 {
     /**
      * @OA\Property(
      *     title="Success",
      *     description="Status answer",
      *     type="boolean",
-     *     default="false"
+     *     default="true"
      * )
      * @var bool
      */
@@ -29,7 +29,7 @@ class LoginResourceErrorValidation
      *     title="Message",
      *     description="Response message",
      *     type="string",
-     *     default="error validation"
+     *     default="comment found"
      * )
      * @var string
      */
@@ -40,9 +40,12 @@ class LoginResourceErrorValidation
      *     title="Data",
      *     description="Response data",
      *     type="object",
-     *     default={
-     *        "email":{"The email field is required."},
-     *        "password":{"The password field is required."},
+     *     example={
+     *         "id": 1,
+     *         "text": "long text ...",
+     *         "user_id": 2,
+     *         "parent_comment_id": null,
+     *         "date": "2023-05-10"
      *     }
      * )
      * @var array

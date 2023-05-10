@@ -93,7 +93,7 @@
                 "operationId": "logout",
                 "parameters": [
                     {
-                        "name": "Bearer Token",
+                        "name": "Authorization",
                         "in": "header",
                         "description": "Authorization token",
                         "required": true,
@@ -137,7 +137,7 @@
                 "operationId": "me",
                 "parameters": [
                     {
-                        "name": "Bearer Token",
+                        "name": "Authorization",
                         "in": "header",
                         "description": "Authorization token",
                         "required": true,
@@ -245,7 +245,7 @@
                 "operationId": "commentIndex",
                 "parameters": [
                     {
-                        "name": "Bearer Token",
+                        "name": "Authorization",
                         "in": "header",
                         "description": "Authorization token",
                         "required": true,
@@ -267,11 +267,11 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Authorized",
+                        "description": "Ok",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/LoginResourceTrue"
+                                    "$ref": "#/components/schemas/IndexCommentResourceTrue"
                                 }
                             }
                         }
@@ -286,12 +286,12 @@
                             }
                         }
                     },
-                    "422": {
-                        "description": "Unprocessable Content",
+                    "404": {
+                        "description": "Not Found",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/LoginResourceErrorValidation"
+                                    "$ref": "#/components/schemas/NotFoundCommentResourceTrue"
                                 }
                             }
                         }
@@ -302,6 +302,40 @@
     },
     "components": {
         "schemas": {
+            "IndexCommentResourceTrue": {
+                "title": "IndexCommentResourceTrue",
+                "description": "Index comment",
+                "properties": {
+                    "success": {
+                        "title": "Success",
+                        "description": "Status answer",
+                        "type": "boolean",
+                        "default": "true"
+                    },
+                    "message": {
+                        "title": "Message",
+                        "description": "Response message",
+                        "type": "string",
+                        "default": "comment found"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "description": "Response data",
+                        "type": "object",
+                        "example": {
+                            "id": 1,
+                            "text": "long text ...",
+                            "user_id": 2,
+                            "parent_comment_id": null,
+                            "date": "2023-05-10"
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "IndexCommentResourceTrue"
+                }
+            },
             "LoginResourceErrorValidation": {
                 "title": "LoginResourceFalse",
                 "description": "Login resource",
@@ -455,6 +489,34 @@
                     "name": "MeResourceTrue"
                 }
             },
+            "NotFoundCommentResourceTrue": {
+                "title": "NotFoundCommentResourceTrue",
+                "description": "Not found comment",
+                "properties": {
+                    "success": {
+                        "title": "Success",
+                        "description": "Status answer",
+                        "type": "boolean",
+                        "default": "false"
+                    },
+                    "message": {
+                        "title": "Message",
+                        "description": "Response message",
+                        "type": "string",
+                        "default": "not found"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "description": "Response data",
+                        "type": "object",
+                        "default": null
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "NotFoundCommentResourceTrue"
+                }
+            },
             "RegisterResourceErrorValidation": {
                 "title": "RegisterResourceErrorValidation",
                 "description": "Register error validation resource",
@@ -475,7 +537,7 @@
                         "title": "Data",
                         "description": "Response data",
                         "type": "object",
-                        "default": {
+                        "example": {
                             "name": [
                                 "The name field is required."
                             ],
