@@ -1,0 +1,48 @@
+<?php
+
+namespace App\Virtual\Resources;
+
+/**
+ * @OA\Schema(
+ *     title="LoginResourceFalse",
+ *     description="Login resource",
+ *     @OA\Xml(
+ *         name="LoginResourceFalse"
+ *     )
+ * )
+ */
+class LoginResourceFalse
+{
+    /**
+     * @OA\Property(
+     *     title="Success",
+     *     description="Status answer",
+     *     type="boolean",
+     *     default="false"
+     * )
+     * @var bool
+     */
+    private $success;
+
+    /**
+     * @OA\Property(
+     *     title="Message",
+     *     description="Response message",
+     *     type="string",
+     *     default="unauthorized"
+     * )
+     * @var string
+     */
+    private $message;
+
+    /**
+     * @OA\Property(
+     *     title="Data",
+     *     description="Response data",
+     *     type="object",
+     *     default={}
+     * )
+     * @var array
+     */
+    private $data;
+}

@@ -1,10 +1,10 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Laravel OpenApi Demo Documentation",
-        "description": "L5 Swagger OpenApi description",
+        "title": "Laravel OpenApi Documentation",
+        "description": "Test project documentation from VK",
         "contact": {
-            "email": "admin@admin.com"
+            "email": "desk10567@gmail.com"
         },
         "license": {
             "name": "Apache 2.0",
@@ -14,18 +14,167 @@
     },
     "servers": [
         {
-            "url": "http://0.0.0.0:8080/docs/api/v1",
-            "description": "Demo API Server"
+            "url": "http://0.0.0.0:8080",
+            "description": "API Server"
         }
     ],
     "paths": {
-        "/api/users": {
-            "get": {
-                "operationId": "288dad71f7d04771988c6b5675c26ac1",
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Login",
+                "description": "Log user and get auth token",
+                "operationId": "login",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "email user",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "test@vk.ru"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "password user",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "password"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
-                        "description": "An example endpoint"
+                        "description": "Authorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LoginResourceTrue"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LoginResourceFalse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Content",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LoginResourceErrorValidation"
+                                }
+                            }
+                        }
                     }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "LoginResourceErrorValidation": {
+                "title": "LoginResourceFalse",
+                "description": "Login resource",
+                "properties": {
+                    "success": {
+                        "title": "Success",
+                        "description": "Status answer",
+                        "type": "boolean",
+                        "default": "false"
+                    },
+                    "message": {
+                        "title": "Message",
+                        "description": "Response message",
+                        "type": "string",
+                        "default": "error validation"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "description": "Response data",
+                        "type": "object",
+                        "default": {
+                            "email": [
+                                "The email field is required."
+                            ],
+                            "password": [
+                                "The password field is required."
+                            ]
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "LoginResourceFalse"
+                }
+            },
+            "LoginResourceFalse": {
+                "title": "LoginResourceFalse",
+                "description": "Login resource",
+                "properties": {
+                    "success": {
+                        "title": "Success",
+                        "description": "Status answer",
+                        "type": "boolean",
+                        "default": "false"
+                    },
+                    "message": {
+                        "title": "Message",
+                        "description": "Response message",
+                        "type": "string",
+                        "default": "unauthorized"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "description": "Response data",
+                        "type": "object",
+                        "default": []
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "LoginResourceFalse"
+                }
+            },
+            "LoginResourceTrue": {
+                "title": "LoginResourceTrue",
+                "description": "Login resource",
+                "properties": {
+                    "success": {
+                        "title": "Success",
+                        "description": "Status answer",
+                        "type": "boolean",
+                        "default": "true"
+                    },
+                    "message": {
+                        "title": "Message",
+                        "description": "Response message",
+                        "type": "string",
+                        "default": "authorized"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "description": "Response data",
+                        "type": "object",
+                        "default": []
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "LoginResourceTrue"
                 }
             }
         }

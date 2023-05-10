@@ -9,33 +9,32 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller;
 
+/**
+ * @OA\Info(
+ *      version="1.0.0",
+ *      title="Laravel OpenApi Documentation",
+ *      description="Test project documentation from VK",
+ *      @OA\Contact(
+ *          email="desk10567@gmail.com"
+ *      ),
+ *      @OA\License(
+ *          name="Apache 2.0",
+ *          url="http://www.apache.org/licenses/LICENSE-2.0.html"
+ *      )
+ * )
+ *
+ * @OA\Server(
+ *      url=L5_SWAGGER_CONST_HOST,
+ *      description="API Server"
+ * )
+ *
+ * @OA\Tag(
+ *     name="Projects",
+ *     description="API Endpoints of Projects"
+ * )
+ */
 class BaseController extends Controller
 {
-    /**
-     * @OA\Info(
-     *      version="1.0.0",
-     *      title="Laravel OpenApi Demo Documentation",
-     *      description="L5 Swagger OpenApi description",
-     *      @OA\Contact(
-     *          email="admin@admin.com"
-     *      ),
-     *      @OA\License(
-     *          name="Apache 2.0",
-     *          url="http://www.apache.org/licenses/LICENSE-2.0.html"
-     *      )
-     * )
-     *
-     * @OA\Server(
-     *      url=L5_SWAGGER_CONST_HOST,
-     *      description="Demo API Server"
-     * )
-
-     *
-     * @OA\Tag(
-     *     name="Projects",
-     *     description="API Endpoints of Projects"
-     * )
-     */
     use AuthorizesRequests, ValidatesRequests;
 
     /**

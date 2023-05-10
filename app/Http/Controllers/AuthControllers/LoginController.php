@@ -8,9 +8,48 @@ use Illuminate\Http\JsonResponse;
 class LoginController extends BaseAuthController
 {
     /**
-     * Get a JWT via given credentials.
-     *
-     * @return \Illuminate\Http\JsonResponse
+     * @OA\Post(
+     *      path="/api/login",
+     *      operationId="login",
+     *      tags={"Projects"},
+     *      summary="Login",
+     *      description="Log user and get auth token",
+     *      @OA\Parameter(
+     *          name="email",
+     *          description="email user",
+     *          required=true,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string",
+     *              example="test@vk.ru"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="password",
+     *          description="password user",
+     *          required=true,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string",
+     *              example="password"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Authorized",
+     *          @OA\JsonContent(ref="#/components/schemas/LoginResourceTrue")
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *          @OA\JsonContent(ref="#/components/schemas/LoginResourceFalse")
+     *      ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Unprocessable Content",
+     *          @OA\JsonContent(ref="#/components/schemas/LoginResourceErrorValidation")
+     *      )
+     *     )
      */
     public function __invoke(LoginFormRequest $request): JsonResponse
     {
