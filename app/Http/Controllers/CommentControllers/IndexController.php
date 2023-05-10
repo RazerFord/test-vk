@@ -35,6 +35,17 @@ class IndexController extends BaseCommentController
      *              example=1
      *          )
      *      ),
+     *      @OA\Parameter(
+     *          name="tree",
+     *          description="get tree",
+     *          required=false,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="boolean",
+     *              example=1,
+     *              default=0
+     *          )
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Ok",
