@@ -309,6 +309,90 @@
                     }
                 }
             }
+        },
+        "/api/comment": {
+            "post": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Store",
+                "description": "Store new comment.",
+                "operationId": "commentStore",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization token",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Bearer 67pIVg4vAbmRZewXK4H0llU4XQtSy3VIxTpofgUOFfpcTfXfK1U0tSM3YNhytEw7BA7KzePrRJoQs3KlQSpzCer10lObTrep8wuZ"
+                        }
+                    },
+                    {
+                        "name": "text",
+                        "in": "query",
+                        "description": "text of comment",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "long text ..."
+                        }
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "user id",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    },
+                    {
+                        "name": "parent_id",
+                        "in": "query",
+                        "description": "parent comment id",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StoreCommentResourceTrue"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LoginResourceFalse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Content",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StoreCommentResourceErrorValidation"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -564,6 +648,68 @@
                 "type": "object",
                 "xml": {
                     "name": "RegisterResourceErrorValidation"
+                }
+            },
+            "StoreCommentResourceErrorValidation": {
+                "title": "StoreCommentResourceErrorValidation",
+                "description": "Store comment error validation",
+                "properties": {
+                    "success": {
+                        "title": "Success",
+                        "description": "Status answer",
+                        "type": "boolean",
+                        "default": "false"
+                    },
+                    "message": {
+                        "title": "Message",
+                        "description": "Response message",
+                        "type": "string",
+                        "default": "error validation"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "description": "Response data",
+                        "type": "object",
+                        "example": {
+                            "text": [
+                                "The text field is required."
+                            ]
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "StoreCommentResourceErrorValidation"
+                }
+            },
+            "StoreCommentResourceTrue": {
+                "title": "StoreCommentResourceTrue",
+                "description": "Store comment true",
+                "properties": {
+                    "success": {
+                        "title": "Success",
+                        "description": "Status answer",
+                        "type": "boolean",
+                        "default": "true"
+                    },
+                    "message": {
+                        "title": "Message",
+                        "description": "Response message",
+                        "type": "string",
+                        "default": "comment created"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "description": "Response data",
+                        "type": "object",
+                        "example": {
+                            "id": 12
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "StoreCommentResourceTrue"
                 }
             }
         }
