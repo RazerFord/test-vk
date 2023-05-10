@@ -356,6 +356,53 @@
                         "Authorization": []
                     }
                 ]
+            },
+            "delete": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Index",
+                "description": "Delete comment.",
+                "operationId": "commentDelete",
+                "parameters": [
+                    {
+                        "name": "comment_id",
+                        "in": "path",
+                        "description": "comment id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DeleteCommentResourceTrue"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundCommentResourceTrue"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ]
             }
         },
         "/api/comment": {
@@ -440,6 +487,34 @@
     },
     "components": {
         "schemas": {
+            "DeleteCommentResourceTrue": {
+                "title": "DeleteCommentResourceTrue",
+                "description": "Delete comment",
+                "properties": {
+                    "success": {
+                        "title": "Success",
+                        "description": "Status answer",
+                        "type": "boolean",
+                        "default": "true"
+                    },
+                    "message": {
+                        "title": "Message",
+                        "description": "Response message",
+                        "type": "string",
+                        "default": "comment deleted"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "description": "Response data",
+                        "type": "object",
+                        "default": null
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "DeleteCommentResourceTrue"
+                }
+            },
             "IndexCommentResourceTrue": {
                 "title": "IndexCommentResourceTrue",
                 "description": "Index comment",

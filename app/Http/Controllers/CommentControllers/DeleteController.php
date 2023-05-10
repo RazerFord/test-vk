@@ -9,9 +9,36 @@ use Illuminate\Http\JsonResponse;
 class DeleteController extends BaseCommentController
 {
     /**
-     * Delete comment.
+     * @OA\Delete(
+     *      path="/api/comment/{comment_id}",
+     *      operationId="commentDelete",
+     *      tags={"Projects"},
+     *      summary="Index",
+     *      description="Delete comment.",
+     *      security={{"Authorization":{}}},
+     *      @OA\Parameter(
+     *          name="comment_id",
+     *          description="comment id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer",
+     *              example=1
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Ok",
+     *          @OA\JsonContent(ref="#/components/schemas/DeleteCommentResourceTrue")
+     *       ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Not Found",
+     *          @OA\JsonContent(ref="#/components/schemas/NotFoundCommentResourceTrue")
+     *      )
+     *     )
      *
-     * @return \Illuminate\Http\JsonResponse
+     *  @return \Illuminate\Http\JsonResponse
      */
     public function __invoke(int $id): JsonResponse
     {
