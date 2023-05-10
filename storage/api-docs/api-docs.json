@@ -170,6 +170,70 @@
                     }
                 }
             }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Register",
+                "description": "Register a new user.",
+                "operationId": "register",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "name user",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "tester"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "email user",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "newtest@vk.ru"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "password user",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "password"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MeResourceTrue"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Content",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RegisterResourceErrorValidation"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -325,6 +389,44 @@
                 "type": "object",
                 "xml": {
                     "name": "MeResourceTrue"
+                }
+            },
+            "RegisterResourceErrorValidation": {
+                "title": "RegisterResourceErrorValidation",
+                "description": "Register error validation resource",
+                "properties": {
+                    "success": {
+                        "title": "Success",
+                        "description": "Status answer",
+                        "type": "boolean",
+                        "default": "false"
+                    },
+                    "message": {
+                        "title": "Message",
+                        "description": "Response message",
+                        "type": "string",
+                        "default": "error validation"
+                    },
+                    "data": {
+                        "title": "Data",
+                        "description": "Response data",
+                        "type": "object",
+                        "default": {
+                            "name": [
+                                "The name field is required."
+                            ],
+                            "email": [
+                                "The email field is required."
+                            ],
+                            "password": [
+                                "The password field is required."
+                            ]
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "RegisterResourceErrorValidation"
                 }
             }
         }

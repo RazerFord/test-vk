@@ -6,7 +6,7 @@ use Illuminate\Http\JsonResponse;
 
 class MeController extends BaseAuthController
 {
-        /**
+    /**
      * @OA\Get(
      *      path="/api/me",
      *      operationId="me",
